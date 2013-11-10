@@ -1,0 +1,574 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE language SYSTEM "language.dtd">
+<language
+   name="FreeFem++"
+   section="Scientific"
+   version="1.0"
+   kateversion="2.4"
+   indenter="cstyle"
+   mimetype="text/x-edp"
+   extensions="*.edp"
+   priority="9"
+   author="Alexandru Fikl">
+
+<!--
+Based on the vim-freefem syntax highlighter found at:
+https://github.com/holomorph/vim-freefem/blob/master/syntax/edp.vim
+and the FreeFem++ syntax file found at:
+http://www.cmap.polytechnique.fr/~pantz/spip/enseignement/Cours-FreeFem++/edp.xml
+
+Extra variables are addded by using the:
+    dumptable(cout)
+command in FreeFem++.
+-->
+
+<highlighting>
+<list name="keywords">
+    <!-- C++ inherited keywords -->
+    <item> break </item>
+    <item> catch </item>
+    <item> cin </item>
+    <item> continue </item>
+    <item> cout </item>
+    <item> else </item>
+    <item> end </item>
+    <item> endl </item>
+    <item> for </item>
+    <item> if </item>
+    <item> return </item>
+    <item> throw </item>
+    <item> try </item>
+    <item> while </item>
+
+    <!-- FreeFem++ keywords -->
+    <item> x </item>
+    <item> y </item>
+    <item> z </item>
+    <item> label </item>
+    <item> region </item>
+    <item> P </item>
+    <item> N </item>
+    <item> lenEdge </item>
+    <item> hTriangle </item>
+    <item> nuTriangle </item>
+    <item> nuEdge </item>
+    <item> nTonEdge </item>
+    <item> area </item>
+    <item> volume </item>
+    <item> pi </item>
+    <item> i </item>
+    <item> true </item>
+    <item> false </item>
+    <item> include </item>
+    <item> load </item>
+    <item> macro </item>
+    <item> HaveUMFPACK </item>
+    <item> NoUseOfWait </item>
+    <item> verbosity </item>
+    <item> version </item>
+    <item> macro </item>
+
+    <!-- MPI keywords -->
+    <item> mpisize </item>
+    <item> mpirank </item>
+    <item> mpiUndefined </item>
+    <item> mpiAnySource </item>
+    <item> mpiCommWorld </item>
+    <item> mpiMAX </item>
+    <item> mpiMIN </item>
+    <item> mpiSUM </item>
+    <item> mpiPROD </item>
+    <item> mpiLAND </item>
+    <item> mpiLOR </item>
+    <item> mpiLXOR </item>
+    <item> mpiBAND </item>
+    <item> mpiBXOR </item>
+</list>
+<list name="fe_keywords">
+    <!-- Standard elements -->
+    <item> P0 </item>
+    <item> P03d </item>
+    <item> P0VF </item>
+    <item> P0edge </item>
+    <item> P1 </item>
+    <item> P13d </item>
+    <item> P1b </item>
+    <item> P1b3d </item>
+    <item> P1dc </item>
+    <item> P1nc </item>
+    <item> P2 </item>
+    <item> P23d </item>
+    <item> P2b </item>
+    <item> P2dc </item>
+    <item> P2h </item>
+    <item> RT0 </item>
+    <item> RT03d </item>
+    <item> RT0Ortho </item>
+    <item> RTmodif </item>
+
+    <!-- Non-standard elements -->
+    <item> P3 </item>
+    <item> P3dc </item>
+    <item> P4 </item>
+    <item> P4dc </item>
+    <item> Morley </item>
+    <item> P2BR </item>
+    <item> Edge03d </item>
+    <item> P1nc </item>
+    <item> RT1 </item>
+    <item> RT1Ortho </item>
+    <item> BDM1 </item>
+    <item> BDM1Ortho </item>
+    <item> TDNNS1 </item>
+</list>
+<list name="quad_keywords">
+    <!-- On edges -->
+    <item> qf1pE </item>
+    <item> qf2pE </item>
+    <item> qf3pE </item>
+    <item> qf4pE </item>
+    <item> qf5pE </item>
+    <item> qf1pElump </item>
+
+    <!-- On triangles -->
+    <item> qf1pT </item>
+    <item> qf2pT </item>
+    <item> qf5pT </item>
+    <item> qf7pT </item>
+    <item> qf9pT </item>
+    <item> qf2pT4P1 </item>
+    <item> qf1pTlump </item>
+
+    <!-- On tetrahedrons -->
+    <item> qfV1 </item>
+    <item> qfV1lump </item>
+    <item> qfV2 </item>
+    <item> qfV5 </item>
+</list>
+<list name="datatypes">
+    <!-- From the manual -->
+    <item> bool </item>
+    <item> int </item>
+    <item> string </item>
+    <item> real </item>
+    <item> complex </item>
+    <item> ofstream </item>
+    <item> ifstream </item>
+    <item> func </item>
+    <item> mesh </item>
+    <item> fespace </item>
+    <item> problem </item>
+    <item> solve </item>
+    <item> varf </item>
+    <item> matrix </item>
+
+    <!-- Others -->
+    <item> border </item>
+    <item> Cmatrix </item>
+    <item> element </item>
+    <item> mesh3 </item>
+    <item> R3 </item>
+    <item> vertex </item>
+
+    <!-- MPI datatypes -->
+    <item> mpiComm </item>
+    <item> mpiGroup </item>
+    <item> mpiRequest </item>
+</list>
+<list name="functions">
+    <!-- General Functions -->
+    <item> average </item>
+    <item> jump </item>
+    <item> mean </item>
+    <item> otherside </item>
+    <item> int1d </item>
+    <item> int2d </item>
+    <item> int3d </item>
+    <item> intalledges </item>
+    <item> intallVFedges </item>
+    <item> intallfaces </item>
+    <item> on </item>
+    <item> dx </item>
+    <item> dy </item>
+    <item> dz </item>
+    <item> dn </item>
+    <item> dxx </item>
+    <item> dxy </item>
+    <item> dxz </item>
+    <item> dyx </item>
+    <item> dyy </item>
+    <item> dyz </item>
+    <item> dzx </item>
+    <item> dzy </item>
+    <item> dzz </item>
+    <item> interpolate </item>
+    <item> interpolatematrix </item>
+    <item> set </item>
+    <item> plot </item>
+    <item> getARGV </item>
+
+    <!-- Mesh Functions -->
+    <item> adaptmesh </item>
+    <item> buildmesh </item>
+    <item> buildmeshborder </item>
+    <item> checkmovemesh </item>
+    <item> emptymesh </item>
+    <item> movemesh </item>
+    <item> readmesh </item>
+    <item> savemesh </item>
+    <item> splitmesh </item>
+    <item> square </item>
+    <item> triangulate </item>
+    <item> trunc </item>
+
+    <!-- Math Functions -->
+    <item> abs </item>
+    <item> acos </item>
+    <item> acosh </item>
+    <item> arg </item>
+    <item> asin </item>
+    <item> asinh </item>
+    <item> atan </item>
+    <item> atan2 </item>
+    <item> atanh </item>
+    <item> ceil </item>
+    <item> conj </item>
+    <item> cos </item>
+    <item> cosh </item>
+    <item> erf </item>
+    <item> erfc </item>
+    <item> exp </item>
+    <item> floor </item>
+    <item> imag </item>
+    <item> log </item>
+    <item> log10 </item>
+    <item> max </item>
+    <item> min </item>
+    <item> norm </item>
+    <item> polar </item>
+    <item> pow </item>
+    <item> sin </item>
+    <item> sinh </item>
+    <item> sqrt </item>
+    <item> tan </item>
+    <item> tanh </item>
+    <item> randinit </item>
+    <item> randint31 </item>
+    <item> randint32 </item>
+    <item> randreal1 </item>
+    <item> randreal2 </item>
+    <item> randreal3 </item>
+    <item> randres53 </item>
+
+    <!-- System Functions -->
+    <item> assert </item>
+    <item> clock </item>
+    <item> dumptable </item>
+    <item> exec </item>
+    <item> exit </item>
+    <item> system </item>
+
+    <!-- Solver Functions -->
+    <item> BFGS </item>
+    <item> convect </item>
+    <item> EigenValue </item>
+    <item> LinearCG </item>
+    <item> LinearGMRES </item>
+    <item> Newton </item>
+    <item> NLCG </item>
+
+    <!-- FreeFem-MPI Functions -->
+    <item> mpiSize </item>
+    <item> mpiRank </item>
+    <item> processor </item>
+    <item> processorblock </item>
+
+    <!-- MPI Functions -->
+    <item> broadcast </item>
+    <item> Send </item>
+    <item> Recv </item>
+    <item> Isend </item>
+    <item> Irecv </item>
+    <item> mpiBarrier </item>
+    <item> mpiWait </item>
+    <item> mpiWaitAll </item>
+    <item> mpiWtime </item>
+    <item> mpiWtick </item>
+    <item> mpiAlltoall </item>
+    <item> mpiAllgather </item>
+    <item> mpiGather </item>
+    <item> mpiScatter </item>
+    <item> mpiReduce </item>
+    <item> mpiAllReduce </item>
+    <item> mpiReduceScatter </item>
+</list>
+<list name="parameters">
+    <item> fill </item>
+    <item> factorize </item>
+    <item> init </item>
+    <item> wait </item>
+    <item> ps </item>
+    <item> solver </item>
+    <item> periodic </item>
+    <item> powerin </item>
+    <item> ratio </item>
+    <item> rescaling </item>
+    <item> splitin </item>
+    <item> splitpbedge </item>
+    <item> thetamax </item>
+    <item> verbosity </item>
+    <item> abserror </item>
+    <item> anisomax </item>
+    <item> cutoff </item>
+    <item> err </item>
+    <item> errg </item>
+    <item> hmax </item>
+    <item> hmin </item>
+    <item> inquire </item>
+    <item> IsMetric </item>
+    <item> iso </item>
+    <item> keepbackvertices </item>
+    <item> maxsubdiv </item>
+    <item> metric </item>
+    <item> nbjacoby </item>
+    <item> nbsmooth </item>
+    <item> nbvx </item>
+    <item> nomeshgeneration </item>
+    <item> omega </item>
+    <item> dimKrylov </item>
+    <item> fixeborder </item>
+    <item> fixeborder </item>
+    <item> nbvx </item>
+    <item> ivalue </item>
+    <item> maxit </item>
+    <item> ncv </item>
+    <item> nev </item>
+    <item> rawvector </item>
+    <item> sigma </item>
+    <item> sym </item>
+    <item> tol </item>
+    <item> value </item>
+    <item> vector </item>
+    <item> periodic </item>
+    <item> factorize </item>
+    <item> label </item>
+    <item> eps </item>
+    <item> nbiter </item>
+    <item> precon </item>
+    <item> veps </item>
+    <item> eps </item>
+    <item> nbiter </item>
+    <item> precon </item>
+    <item> veps </item>
+    <item> init </item>
+    <item> inside </item>
+    <item> inside </item>
+    <item> op </item>
+    <item> factorize </item>
+    <item> solver </item>
+    <item> ptmerge </item>
+    <item> transfo </item>
+    <item> eps </item>
+    <item> precon </item>
+    <item> solver </item>
+    <item> tgv </item>
+    <item> tolpivot  </item>
+    <item> meditff </item>
+    <item> order </item>
+    <item> save </item>
+    <item> eps </item>
+    <item> nbiter </item>
+    <item> orientation </item>
+    <item> veps </item>
+    <item> bw </item>
+    <item> cmm </item>
+    <item> coef </item>
+    <item> dim </item>
+    <item> grey </item>
+    <item> hsv </item>
+    <item> nbarrow </item>
+    <item> nbiso </item>
+    <item> ps </item>
+    <item> value </item>
+    <item> varrow </item>
+    <item> viso </item>
+    <item> precon </item>
+    <item> optimize </item>
+    <item> eps </item>
+    <item> init </item>
+    <item> precon </item>
+    <item> solver </item>
+    <item> strategy  </item>
+    <item> tgv </item>
+    <item> tolpivot  </item>
+    <item> tolpivotsym  </item>
+    <item> qfnbpE </item>
+    <item> qforder </item>
+    <item> qft </item>
+    <item> qfV </item>
+    <item> aspectratio </item>
+    <item> bb </item>
+    <item> boundary </item>
+    <item> order </item>
+    <item> qfe </item>
+    <item> qforder </item>
+    <item> qft </item>
+    <item> eps </item>
+    <item> init </item>
+    <item> precon </item>
+    <item> solver </item>
+    <item> strategy </item>
+    <item> tgv </item>
+    <item> tolpivot </item>
+    <item> tolpivotsym </item>
+    <item> solver </item>
+    <item> split </item>
+    <item> flags </item>
+    <item> label </item>
+    <item> region </item>
+    <item> label </item>
+    <item> strategy </item>
+    <item> split </item>
+    <item> facetcl </item>
+    <item> holelist </item>
+    <item> nboffacetcl </item>
+    <item> nbofholes </item>
+    <item> nbofregions </item>
+    <item> regionlist </item>
+    <item> switch </item>
+    <item> facetcl </item>
+    <item> nboffacetcl </item>
+    <item> ptmerge </item>
+    <item> refface </item>
+    <item> regionlist </item>
+    <item> switch </item>
+    <item> tgv </item>
+    <item> optimize </item>
+    <item> tolpivot </item>
+    <item> tolpivotsym </item>
+    <item> veps </item>
+</list>
+
+<contexts>
+    <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+        <DetectSpaces />
+
+        <keyword attribute="Keywords"           context="#stay" String="keywords" />
+        <keyword attribute="Finite Elements"    context="#stay" String="fe_keywords" />
+        <keyword attribute="Quadrature Rules"   context="#stay" String="quad_keywords" />
+        <keyword attribute="Parameters"         context="#stay" String="parameters" />
+        <keyword attribute="Functions"          context="#stay" String="functions" />
+        <keyword attribute="Data Types"         context="#stay" String="datatypes" />
+
+        <HlCChar attribute="Char" context="#stay"/>
+
+        <DetectChar attribute="String" context="String" char="&quot;"/>
+        <DetectIdentifier />
+        <Float attribute="Float" context="#stay">
+            <AnyChar String="fF" attribute="Float" context="#stay"/>
+        </Float>
+        <HlCOct attribute="Octal" context="#stay"/>
+        <HlCHex attribute="Hex" context="#stay"/>
+        <Int attribute="Decimal" context="#stay">
+            <StringDetect attribute="Decimal" context="#stay" String="ULL" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="LUL" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="LLU" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="UL" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="LU" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="LL" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="U" insensitive="TRUE"/>
+            <StringDetect attribute="Decimal" context="#stay" String="L" insensitive="TRUE"/>
+        </Int>
+        <IncludeRules context="##Doxygen" />
+        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
+        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
+        <DetectChar attribute="Symbol" context="#stay" char="{" beginRegion="Brace1" />
+        <DetectChar attribute="Symbol" context="#stay" char="}" endRegion="Brace1" />
+        <AnyChar attribute="Symbol" context="#stay" String=":!%&amp;()+,-/.*&lt;=&gt;?[]{|}~^&#59;"/>
+    </context>
+
+    <context attribute="String" lineEndContext="#pop" name="String">
+        <LineContinue attribute="String" context="#stay"/>
+        <HlCStringChar attribute="String Char" context="#stay"/>
+        <DetectChar attribute="String" context="#pop" char="&quot;"/>
+    </context>
+
+    <context attribute="Region Marker" lineEndContext="#pop" name="Region Marker">
+    </context>
+
+    <context attribute="Comment" lineEndContext="#pop" name="Commentar 1">
+        <LineContinue attribute="Comment" context="#stay"/>
+        <DetectSpaces />
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+    </context>
+
+    <context attribute="Comment" lineEndContext="#stay" name="Commentar 2">
+        <DetectSpaces />
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment"/>
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+    </context>
+
+    <context attribute="Comment" lineEndContext="#stay" name="Commentar/Preprocessor">
+        <DetectSpaces />
+        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment2" />
+        <DetectIdentifier />
+    </context>
+
+    <context attribute="Comment" lineEndContext="#stay" name="Outscoped" >
+        <DetectSpaces />
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+        <IncludeRules context="##Doxygen" />
+        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
+        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
+        <RegExpr attribute="Comment" context="Outscoped intern" String="#\s*if" beginRegion="PP" firstNonSpace="true" />
+        <RegExpr attribute="Preprocessor" context="#pop" String="#\s*el(?:se|if)" firstNonSpace="true" />
+        <RegExpr attribute="Preprocessor" context="#pop" String="#\s*endif" endRegion="PP" firstNonSpace="true" />
+    </context>
+
+    <context attribute="Comment" lineEndContext="#stay" name="Outscoped intern">
+        <DetectSpaces />
+        <IncludeRules context="##Alerts" />
+        <DetectIdentifier />
+        <DetectChar attribute="String" context="String" char="&quot;"/>
+        <IncludeRules context="##Doxygen" />
+        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
+        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
+        <RegExpr attribute="Comment" context="Outscoped intern" String="#\s*if" beginRegion="PP" firstNonSpace="true" />
+        <RegExpr attribute="Comment" context="#pop" String="#\s*endif" endRegion="PP" firstNonSpace="true" />
+    </context>
+</contexts>
+
+<itemDatas>
+    <itemData name="Normal Text"      defStyleNum="dsNormal"       spellChecking="false" />
+
+    <itemData name="Keywords"         defStyleNum="dsKeyword"      spellChecking="false" />
+    <itemData name="Finite Elements"  defStyleNum="dsKeyword"      spellChecking="false" />
+    <itemData name="Quadrature Rules" defStyleNum="dsKeyword"      spellChecking="false" />
+    <itemData name="Functions"        defStyleNum="dsFunction"     spellChecking="false" bold="1" />
+    <itemData name="Data Types"       defStyleNum="dsDataType"     spellChecking="false" />
+    <itemData name="Parameters"       defStyleNum="dsNormal"       spellChecking="false" italic="1" />
+
+    <itemData name="Decimal"          defStyleNum="dsDecVal"       spellChecking="false" />
+    <itemData name="Octal"            defStyleNum="dsBaseN"        spellChecking="false" />
+    <itemData name="Hex"              defStyleNum="dsBaseN"        spellChecking="false" />
+    <itemData name="Float"            defStyleNum="dsFloat"        spellChecking="false" />
+    <itemData name="Char"             defStyleNum="dsChar"         spellChecking="false" />
+    <itemData name="String"           defStyleNum="dsString"       />
+    <itemData name="String Char"      defStyleNum="dsChar"         />
+    <itemData name="Comment"          defStyleNum="dsComment"      />
+    <itemData name="Symbol"           defStyleNum="dsNormal"       spellChecking="false" />
+    <itemData name="Region Marker"    defStyleNum="dsRegionMarker" spellChecking="false" />
+</itemDatas>
+</highlighting>
+
+<general>
+    <comments>
+        <comment name="singleLine" start="//" position="afterwhitespace"/>
+        <comment name="multiLine" start="/*" end="*/" region="Comment" />
+    </comments>
+    <keywords casesensitive="1" />
+</general>
+</language>
