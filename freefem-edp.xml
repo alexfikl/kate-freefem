@@ -2,6 +2,8 @@
 <mime-info xmlns='http://www.freedesktop.org/standards/shared-mime-info'>
     <mime-type type="text/x-edp">
         <comment>FreeFEM++ file</comment>
-        <glob pattern="*.edp;*.idp"/>
+        <comment xml:lang="fr">Fichier FreeFEM++</comment>
+        <glob pattern="*.edp"/>
+        <glob pattern="*.idp"/>
     </mime-type>
 </mime-info>
