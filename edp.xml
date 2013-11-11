@@ -302,242 +302,94 @@ command in FreeFem++.
     <item> mpiAllReduce </item>
     <item> mpiReduceScatter </item>
 </list>
-<list name="parameters">
-    <item> fill </item>
-    <item> factorize </item>
-    <item> init </item>
-    <item> wait </item>
-    <item> ps </item>
-    <item> solver </item>
-    <item> periodic </item>
-    <item> powerin </item>
-    <item> ratio </item>
-    <item> rescaling </item>
-    <item> splitin </item>
-    <item> splitpbedge </item>
-    <item> thetamax </item>
-    <item> verbosity </item>
-    <item> abserror </item>
-    <item> anisomax </item>
-    <item> cutoff </item>
-    <item> err </item>
-    <item> errg </item>
-    <item> hmax </item>
-    <item> hmin </item>
-    <item> inquire </item>
-    <item> IsMetric </item>
-    <item> iso </item>
-    <item> keepbackvertices </item>
-    <item> maxsubdiv </item>
-    <item> metric </item>
-    <item> nbjacoby </item>
-    <item> nbsmooth </item>
-    <item> nbvx </item>
-    <item> nomeshgeneration </item>
-    <item> omega </item>
-    <item> dimKrylov </item>
-    <item> fixeborder </item>
-    <item> fixeborder </item>
-    <item> nbvx </item>
-    <item> ivalue </item>
-    <item> maxit </item>
-    <item> ncv </item>
-    <item> nev </item>
-    <item> rawvector </item>
-    <item> sigma </item>
-    <item> sym </item>
-    <item> tol </item>
-    <item> value </item>
-    <item> vector </item>
-    <item> periodic </item>
-    <item> factorize </item>
-    <item> label </item>
-    <item> eps </item>
-    <item> nbiter </item>
-    <item> precon </item>
-    <item> veps </item>
-    <item> eps </item>
-    <item> nbiter </item>
-    <item> precon </item>
-    <item> veps </item>
-    <item> init </item>
-    <item> inside </item>
-    <item> inside </item>
-    <item> op </item>
-    <item> factorize </item>
-    <item> solver </item>
-    <item> ptmerge </item>
-    <item> transfo </item>
-    <item> eps </item>
-    <item> precon </item>
-    <item> solver </item>
-    <item> tgv </item>
-    <item> tolpivot  </item>
-    <item> meditff </item>
-    <item> order </item>
-    <item> save </item>
-    <item> eps </item>
-    <item> nbiter </item>
-    <item> orientation </item>
-    <item> veps </item>
-    <item> bw </item>
-    <item> cmm </item>
-    <item> coef </item>
-    <item> dim </item>
-    <item> grey </item>
-    <item> hsv </item>
-    <item> nbarrow </item>
-    <item> nbiso </item>
-    <item> ps </item>
-    <item> value </item>
-    <item> varrow </item>
-    <item> viso </item>
-    <item> precon </item>
-    <item> optimize </item>
-    <item> eps </item>
-    <item> init </item>
-    <item> precon </item>
-    <item> solver </item>
-    <item> strategy  </item>
-    <item> tgv </item>
-    <item> tolpivot  </item>
-    <item> tolpivotsym  </item>
-    <item> qfnbpE </item>
-    <item> qforder </item>
-    <item> qft </item>
-    <item> qfV </item>
-    <item> aspectratio </item>
-    <item> bb </item>
-    <item> boundary </item>
-    <item> order </item>
-    <item> qfe </item>
-    <item> qforder </item>
-    <item> qft </item>
-    <item> eps </item>
-    <item> init </item>
-    <item> precon </item>
-    <item> solver </item>
-    <item> strategy </item>
-    <item> tgv </item>
-    <item> tolpivot </item>
-    <item> tolpivotsym </item>
-    <item> solver </item>
-    <item> split </item>
-    <item> flags </item>
-    <item> label </item>
-    <item> region </item>
-    <item> label </item>
-    <item> strategy </item>
-    <item> split </item>
-    <item> facetcl </item>
-    <item> holelist </item>
-    <item> nboffacetcl </item>
-    <item> nbofholes </item>
-    <item> nbofregions </item>
-    <item> regionlist </item>
-    <item> switch </item>
-    <item> facetcl </item>
-    <item> nboffacetcl </item>
-    <item> ptmerge </item>
-    <item> refface </item>
-    <item> regionlist </item>
-    <item> switch </item>
-    <item> tgv </item>
-    <item> optimize </item>
-    <item> tolpivot </item>
-    <item> tolpivotsym </item>
-    <item> veps </item>
-</list>
 
 <contexts>
     <context attribute="Normal Text" lineEndContext="#stay" name="Normal">
+        <!-- Detect all starting spaces -->
         <DetectSpaces />
 
+        <!-- Allow to manually define folding regions using BEGIN and END -->
+        <StringDetect attribute="Region Marker" context="Region Marker" String="//BEGIN" beginRegion="Region1" firstNonSpace="true" />
+        <StringDetect attribute="Region Marker" context="Region Marker" String="//END" endRegion="Region1" firstNonSpace="true" />
+
+        <!-- Use different highlighting for include and load strings -->
+        <WordDetect attribute="Keywords" context="Include" String="include" />
+        <WordDetect attribute="Keywords" context="Include" String="load" />
+
+        <!-- Detect our keywords -->
         <keyword attribute="Keywords"           context="#stay" String="keywords" />
         <keyword attribute="Finite Elements"    context="#stay" String="fe_keywords" />
         <keyword attribute="Quadrature Rules"   context="#stay" String="quad_keywords" />
-        <keyword attribute="Parameters"         context="#stay" String="parameters" />
         <keyword attribute="Functions"          context="#stay" String="functions" />
         <keyword attribute="Data Types"         context="#stay" String="datatypes" />
 
+        <!-- Detect a class member -->
+        <DetectChar context="Object Member" char="." />
+
+        <!-- Detect a single C-style character -->
         <HlCChar attribute="Char" context="#stay"/>
 
+        <!-- Detect an opening string (see String context for closing) -->
         <DetectChar attribute="String" context="String" char="&quot;"/>
         <DetectIdentifier />
-        <Float attribute="Float" context="#stay">
-            <AnyChar String="fF" attribute="Float" context="#stay"/>
-        </Float>
+
+        <!-- Detect various number formats -->
+        <Float attribute="Float" context="#stay"/>
         <HlCOct attribute="Octal" context="#stay"/>
         <HlCHex attribute="Hex" context="#stay"/>
-        <Int attribute="Decimal" context="#stay">
-            <StringDetect attribute="Decimal" context="#stay" String="ULL" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="LUL" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="LLU" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="UL" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="LU" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="LL" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="U" insensitive="TRUE"/>
-            <StringDetect attribute="Decimal" context="#stay" String="L" insensitive="TRUE"/>
-        </Int>
+        <Int attribute="Decimal" context="#stay"/>
+
+        <!-- Detect Doxygen comments -->
         <IncludeRules context="##Doxygen" />
-        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
-        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
+
+        <!-- Detect single-line comments -->
+        <Detect2Chars attribute="Comment" context="Single Comment" char="/" char1="/"/>
+
+        <!-- Detect multiline comments (see `Comment 2` context for closing) -->
+        <Detect2Chars attribute="Comment" context="Multi Comment" char="/" char1="*" beginRegion="Comment"/>
+
+        <!-- Detect opening and closing braces -->
         <DetectChar attribute="Symbol" context="#stay" char="{" beginRegion="Brace1" />
         <DetectChar attribute="Symbol" context="#stay" char="}" endRegion="Brace1" />
+
+        <!-- Detect any symbols -->
         <AnyChar attribute="Symbol" context="#stay" String=":!%&amp;()+,-/.*&lt;=&gt;?[]{|}~^&#59;"/>
     </context>
 
+    <!-- Ued for include/load to color the string differently -->
+    <context attribute="Library" lineEndContext="#pop" name="Include" />
+
+    <!-- Highlight class members -->
+    <context attribute="Normal Text" lineEndContext="#pop" fallthrough="true" fallthroughContext="#pop" name="Object Member">
+        <DetectChar char="." />
+        <DetectIdentifier attribute="Object Members" />
+    </context>
+
+    <!-- Close an opened string and pop the context -->
     <context attribute="String" lineEndContext="#pop" name="String">
         <LineContinue attribute="String" context="#stay"/>
         <HlCStringChar attribute="String Char" context="#stay"/>
         <DetectChar attribute="String" context="#pop" char="&quot;"/>
     </context>
 
+    <!-- Region Markers context -->
     <context attribute="Region Marker" lineEndContext="#pop" name="Region Marker">
     </context>
 
-    <context attribute="Comment" lineEndContext="#pop" name="Commentar 1">
+    <!-- Allow for highlighted alerts in the single-line comments -->
+    <context attribute="Comment" lineEndContext="#pop" name="Single Comment">
         <LineContinue attribute="Comment" context="#stay"/>
         <DetectSpaces />
         <IncludeRules context="##Alerts" />
         <DetectIdentifier />
     </context>
 
-    <context attribute="Comment" lineEndContext="#stay" name="Commentar 2">
+    <!-- Same for multiline comments -->
+    <context attribute="Comment" lineEndContext="#stay" name="Multi Comment">
         <DetectSpaces />
         <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment"/>
         <IncludeRules context="##Alerts" />
         <DetectIdentifier />
-    </context>
-
-    <context attribute="Comment" lineEndContext="#stay" name="Commentar/Preprocessor">
-        <DetectSpaces />
-        <Detect2Chars attribute="Comment" context="#pop" char="*" char1="/" endRegion="Comment2" />
-        <DetectIdentifier />
-    </context>
-
-    <context attribute="Comment" lineEndContext="#stay" name="Outscoped" >
-        <DetectSpaces />
-        <IncludeRules context="##Alerts" />
-        <DetectIdentifier />
-        <IncludeRules context="##Doxygen" />
-        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
-        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
-        <RegExpr attribute="Comment" context="Outscoped intern" String="#\s*if" beginRegion="PP" firstNonSpace="true" />
-        <RegExpr attribute="Preprocessor" context="#pop" String="#\s*el(?:se|if)" firstNonSpace="true" />
-        <RegExpr attribute="Preprocessor" context="#pop" String="#\s*endif" endRegion="PP" firstNonSpace="true" />
-    </context>
-
-    <context attribute="Comment" lineEndContext="#stay" name="Outscoped intern">
-        <DetectSpaces />
-        <IncludeRules context="##Alerts" />
-        <DetectIdentifier />
-        <DetectChar attribute="String" context="String" char="&quot;"/>
-        <IncludeRules context="##Doxygen" />
-        <Detect2Chars attribute="Comment" context="Commentar 1" char="/" char1="/"/>
-        <Detect2Chars attribute="Comment" context="Commentar 2" char="/" char1="*" beginRegion="Comment"/>
-        <RegExpr attribute="Comment" context="Outscoped intern" String="#\s*if" beginRegion="PP" firstNonSpace="true" />
-        <RegExpr attribute="Comment" context="#pop" String="#\s*endif" endRegion="PP" firstNonSpace="true" />
     </context>
 </contexts>
 
@@ -549,7 +401,7 @@ command in FreeFem++.
     <itemData name="Quadrature Rules" defStyleNum="dsKeyword"      spellChecking="false" />
     <itemData name="Functions"        defStyleNum="dsFunction"     spellChecking="false" bold="1" />
     <itemData name="Data Types"       defStyleNum="dsDataType"     spellChecking="false" />
-    <itemData name="Parameters"       defStyleNum="dsNormal"       spellChecking="false" italic="1" />
+    <itemData name="Object Members"   defStyleNum="dsFunction"     spellChecking="false" />
 
     <itemData name="Decimal"          defStyleNum="dsDecVal"       spellChecking="false" />
     <itemData name="Octal"            defStyleNum="dsBaseN"        spellChecking="false" />
@@ -560,6 +412,7 @@ command in FreeFem++.
     <itemData name="String Char"      defStyleNum="dsChar"         />
     <itemData name="Comment"          defStyleNum="dsComment"      />
     <itemData name="Symbol"           defStyleNum="dsNormal"       spellChecking="false" />
+    <itemData name="Library"          defStyleNum="dsOther"        color="#008000" selColor="#00ffff" bold="0" italic="0" spellChecking="false"/>
     <itemData name="Region Marker"    defStyleNum="dsRegionMarker" spellChecking="false" />
 </itemDatas>
 </highlighting>
