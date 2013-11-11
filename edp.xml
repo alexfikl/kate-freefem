@@ -4,22 +4,27 @@
    name="FreeFem++"
    section="Scientific"
    version="1.0"
-   kateversion="2.4"
+   kateversion="3.5"
    indenter="cstyle"
    mimetype="text/x-edp"
-   extensions="*.edp"
+   extensions="*.edp;*.idp"
    priority="9"
    author="Alexandru Fikl">
 
 <!--
-Based on the vim-freefem syntax highlighter found at:
-https://github.com/holomorph/vim-freefem/blob/master/syntax/edp.vim
-and the FreeFem++ syntax file found at:
-http://www.cmap.polytechnique.fr/~pantz/spip/enseignement/Cours-FreeFem++/edp.xml
+Inspired by:
+ - http://www.ann.jussieu.fr/~lehyaric/ffcs/refcard.php
+ - https://github.com/holomorph/vim-freefem/blob/master/syntax/edp.vim
+ - http://www.cmap.polytechnique.fr/~pantz/spip/enseignement/Cours-FreeFem++/edp.xml
 
-Extra variables are addded by using the:
-    dumptable(cout)
-command in FreeFem++.
+Some variables were also added from the `dumptable(cout)` command in
+FreeFem++.
+
+NOTE: Maybe it's worth it to get the dependency back to Kate 2.4 by replacing
+WordDetect.
+
+TODO: look into the 3D functions and add more of them.
+TODO: look into more of the stuff in the first link.
 -->
 
 <highlighting>
@@ -55,6 +60,7 @@ command in FreeFem++.
     <item> nTonEdge </item>
     <item> area </item>
     <item> volume </item>
+    <item> element </item>
     <item> pi </item>
     <item> i </item>
     <item> true </item>
@@ -62,21 +68,28 @@ command in FreeFem++.
     <item> include </item>
     <item> load </item>
     <item> macro </item>
-    <item> HaveUMFPACK </item>
-    <item> NoUseOfWait </item>
-    <item> ARGV </item>
-    <item> verbosity </item>
-    <item> version </item>
     <item> macro </item>
+
+    <!-- FreeFEM system keywords -->
+    <item> HaveUMFPACK </item>
+    <item> ARGV </item>
+    <item> NoUseOfWait </item>
+    <item> CPUTime </item>
+    <item> havesparsesolver </item>
+    <item> version </item>
+    <item> verbosity </item>
+    <item> searchMethod </item>
 
     <!-- MPI keywords -->
     <item> mpisize </item>
     <item> mpirank </item>
     <item> mpiUndefined </item>
     <item> mpiAnySource </item>
+    <item> mpiAnyTag </item>
     <item> mpiCommWorld </item>
     <item> mpiMAX </item>
     <item> mpiMIN </item>
+    <item> mpiMINLOC </item>
     <item> mpiSUM </item>
     <item> mpiPROD </item>
     <item> mpiLAND </item>
@@ -176,10 +189,12 @@ command in FreeFem++.
     <!-- Others -->
     <item> border </item>
     <item> Cmatrix </item>
-    <item> element </item>
     <item> mesh3 </item>
     <item> R3 </item>
     <item> vertex </item>
+    <item> QF1 </item>
+    <item> QF2 </item>
+    <item> QF3 </item>
 
     <!-- MPI datatypes -->
     <item> mpiComm </item>
@@ -251,6 +266,10 @@ command in FreeFem++.
     <item> exp </item>
     <item> floor </item>
     <item> imag </item>
+    <item> j0 </item>
+    <item> j1 </item>
+    <item> jn </item>
+    <item> lgamma </item>
     <item> log </item>
     <item> log10 </item>
     <item> max </item>
@@ -263,13 +282,19 @@ command in FreeFem++.
     <item> sqrt </item>
     <item> tan </item>
     <item> tanh </item>
-    <item> randinit </item>
     <item> randint31 </item>
     <item> randint32 </item>
+    <item> randinit </item>
     <item> randreal1 </item>
     <item> randreal2 </item>
     <item> randreal3 </item>
     <item> randres53 </item>
+    <item> rint </item>
+    <item> round </item>
+    <item> tgamma </item>
+    <item> y0 </item>
+    <item> y1 </item>
+    <item> yn </item>
 
     <!-- System Functions -->
     <item> assert </item>
@@ -306,9 +331,13 @@ command in FreeFem++.
     <item> mpiWtime </item>
     <item> mpiWtick </item>
     <item> mpiAlltoall </item>
+    <item> mpiAlltoallv </item>
     <item> mpiAllgather </item>
+    <item> mpiAllgatherv </item>
     <item> mpiGather </item>
+    <item> mpiGatherv </item>
     <item> mpiScatter </item>
+    <item> mpiScatterv </item>
     <item> mpiReduce </item>
     <item> mpiAllReduce </item>
     <item> mpiReduceScatter </item>
