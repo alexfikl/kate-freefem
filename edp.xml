@@ -64,6 +64,7 @@ command in FreeFem++.
     <item> macro </item>
     <item> HaveUMFPACK </item>
     <item> NoUseOfWait </item>
+    <item> ARGV </item>
     <item> verbosity </item>
     <item> version </item>
     <item> macro </item>
@@ -144,6 +145,16 @@ command in FreeFem++.
     <item> qfV1lump </item>
     <item> qfV2 </item>
     <item> qfV5 </item>
+</list>
+<list name="solver_keywords">
+    <item> LU </item>
+    <item> CG </item>
+    <item> Crout </item>
+    <item> Cholesky </item>
+    <item> GMRES </item>
+    <item> sparsesolver </item>
+    <item> sparsesolverSym </item>
+    <item> UMFPACK </item>
 </list>
 <list name="datatypes">
     <!-- From the manual -->
@@ -320,6 +331,7 @@ command in FreeFem++.
         <keyword attribute="Keywords"           context="#stay" String="keywords" />
         <keyword attribute="Finite Elements"    context="#stay" String="fe_keywords" />
         <keyword attribute="Quadrature Rules"   context="#stay" String="quad_keywords" />
+        <keyword attribute="Solvers"            context="#stay" String="solver_keywords" />
         <keyword attribute="Functions"          context="#stay" String="functions" />
         <keyword attribute="Data Types"         context="#stay" String="datatypes" />
 
@@ -399,6 +411,7 @@ command in FreeFem++.
     <itemData name="Keywords"         defStyleNum="dsKeyword"      spellChecking="false" />
     <itemData name="Finite Elements"  defStyleNum="dsKeyword"      spellChecking="false" />
     <itemData name="Quadrature Rules" defStyleNum="dsKeyword"      spellChecking="false" />
+    <itemData name="Solvers"          defStyleNum="dsKeyword"      spellChecking="false" />
     <itemData name="Functions"        defStyleNum="dsFunction"     spellChecking="false" bold="1" />
     <itemData name="Data Types"       defStyleNum="dsDataType"     spellChecking="false" />
     <itemData name="Object Members"   defStyleNum="dsFunction"     spellChecking="false" />
